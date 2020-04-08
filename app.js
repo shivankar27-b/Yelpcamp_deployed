@@ -19,7 +19,7 @@ var commentRoutes = require("./routes/comments"),
     indexRoutes = require("./routes/index")
 var port = process.env.PORT || 8086
     //seedDB();
-mongoose.connect(process.env.DATABASEURL);
+mongoose.connect("mongodb+srv://devd:6Hiv@nker@cluster0-bsvef.mongodb.net/test?retryWrites=true&w=majority");
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
