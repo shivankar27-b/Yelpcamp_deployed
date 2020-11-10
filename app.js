@@ -19,12 +19,11 @@ var commentRoutes = require("./routes/comments"),
     indexRoutes = require("./routes/index")
 var port = process.env.PORT || 8086
     //seedDB();
-mongoose.connect("mongodb+srv://devd:6Hiv@nker@cluster0-bsvef.mongodb.net/test?retryWrites=true&w=majority", {
+    //connect mongodb atlas cluster
+mongoose.connect("mongodb+srv://<cluster_username>:<cluster_password>@cluster0-bsvef.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useCreateIndex: true
 });
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
@@ -49,51 +48,9 @@ app.use(function(req, res, next) {
     res.locals.success = req.flash("success");
     next();
 });
-
-
-
-// SCHEMA SETUP
-
-
-
-
-// Campground.create(
-
-//      {
-
-//          name: "Granite Hill", 
-
-//          image: "https://farm1.staticflickr.com/60/215827008_6489cd30c3.jpg",
-
-//          description: "This is a huge granite hill, no bathrooms.  No water. Beautiful granite!"
-
-
-
-//      },
-
-//      function(err, campground){
-
-//       if(err){
-
-//           console.log(err);
-
-//       } else {
-
-//           console.log("NEWLY CREATED CAMPGROUND: ");
-
-//           console.log(campground);
-
-//       }
-
-//     });
-
-
-
 app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
-
-
 app.listen(port, function() {
     console.log("Yelpcamp about to start");
 });
